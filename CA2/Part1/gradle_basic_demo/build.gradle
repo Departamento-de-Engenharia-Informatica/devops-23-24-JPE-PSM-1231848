@@ -72,3 +72,10 @@ task backup(type: Copy){
     from 'src'
     into 'backup'
 }
+
+task zipper(type:Zip){
+    archiveFileName = "archive.zip"
+    destinationDirectory = file("./")
+
+    from "src"
+}
