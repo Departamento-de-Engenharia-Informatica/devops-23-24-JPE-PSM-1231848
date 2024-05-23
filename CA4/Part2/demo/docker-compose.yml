@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfileweb
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:h2:tcp://db:9092/~/test
+      SPRING_DATASOURCE_USERNAME: sa
+      SPRING_DATASOURCE_PASSWORD:
+    volumes:
+      - ./app:/app
+
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfiledb
+    ports:
+      - "8082:8082"
+      - "9092:9092"
+    volumes:
+      - ./h2-data:/opt/h2-data
