@@ -1,15 +1,14 @@
-# Use uma imagem base do OpenJDK para rodar o H2
+
 FROM openjdk:17-jdk-slim
 
-# Instale wget
+
 RUN apt-get update && apt-get install -y wget
 
-# Baixe e descompacte o H2 Database Engine
+
 RUN wget https://repo1.maven.org/maven2/com/h2database/h2/1.4.200/h2-1.4.200.jar
 
-# Exponha a porta padrão do H2
+
 EXPOSE 8082
 EXPOSE 9092
 
-# Defina o comando para iniciar o H2
 CMD ["java", "-cp", "h2-1.4.200.jar", "org.h2.tools.Server", "-web", "-webAllowOthers", "-tcp", "-tcpAllowOthers", "-ifNotExists"]

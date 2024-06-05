@@ -1,13 +1,12 @@
-# Use a imagem oficial do Tomcat como base
+
 FROM tomcat:9.0
 
-# Remova os aplicativos padrão
+
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Copie o WAR da aplicação Spring para o diretório webapps do Tomcat
+
 COPY build/libs/basic-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
 
-# Exponha a porta do Tomcat
 EXPOSE 8080
 
 CMD ["catalina.sh", "run"]
